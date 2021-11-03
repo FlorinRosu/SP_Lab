@@ -1,4 +1,4 @@
-package lab_2.miscellaneous;
+package lab.exception;
 
 public class AuthorAlreadyExistsException extends RuntimeException {
 	private static final long serialVersionUID = 4902730693293694180L;
@@ -6,5 +6,4 @@ public class AuthorAlreadyExistsException extends RuntimeException {
 	public AuthorAlreadyExistsException(String name) {
 		super(String.format("Author %s already exists", name));
 	}
-
 }
