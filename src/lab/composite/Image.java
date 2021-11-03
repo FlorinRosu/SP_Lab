@@ -1,9 +1,13 @@
 package lab.composite;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class Image implements Element {
+	private static final long serialVersionUID = 1L;
+	
 	private String url;
 
 	@Override
@@ -24,5 +28,10 @@ public class Image implements Element {
 	@Override
 	public Element get(int index) {
 		return null;
+	}
+
+	@Override
+	public Element makeClone() {
+		return SerializationUtils.clone(this);
 	}
 }

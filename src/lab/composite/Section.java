@@ -3,9 +3,13 @@ package lab.composite;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import lombok.Getter;
 
 public class Section implements Element {
+	private static final long serialVersionUID = 1L;
+
 	@Getter
 	private String title;
 	private List<Element> children;
@@ -25,7 +29,7 @@ public class Section implements Element {
 
 	@Override
 	public void add(Element element) {
-		children.add(element);
+		children.add(element.makeClone());
 	}
 
 	@Override
@@ -37,5 +41,10 @@ public class Section implements Element {
 	public Element get(int index) {
 		/* Index out of bounds will be propagated if index is invalid */
 		return children.get(index);
+	}
+
+	@Override
+	public Element makeClone() {
+		return SerializationUtils.clone(this);
 	}
 }

@@ -7,6 +7,8 @@ import lab.composite.Section;
 import lab.exception.AuthorAlreadyExistsException;
 
 public class Book extends Section {
+	private static final long serialVersionUID = 1L;
+	
 	private List<Author> authors;
 
 	public Book(String title) {
