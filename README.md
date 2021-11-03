@@ -6,3 +6,6 @@ Book management system. Book layout shall contain:
 -Text
 -Images
 -Tables
+
+Feedback lab2:
+- all good ;)
