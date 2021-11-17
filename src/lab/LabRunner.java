@@ -1,16 +1,16 @@
 package lab;
 
-import lab.composite.Image;
 import lab.composite.Section;
+import lab.proxy.ImageProxy;
 
 public class LabRunner {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
 		long endTime = 0L;
 		
-		Image img1 = new Image("Pamela Anderson");
-		Image img2 = new Image("Kim Kardashian");
-		Image img3 = new Image("Kirby Griffin");
+		ImageProxy img1 = new ImageProxy("Pamela Anderson");
+		ImageProxy img2 = new ImageProxy("Kim Kardashian");
+		ImageProxy img3 = new ImageProxy("Kirby Griffin");
 		
 		Section playboyS1 = new Section("Front Cover");
 		Section playboyS2 = new Section("Summer Girls");
