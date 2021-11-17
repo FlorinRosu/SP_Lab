@@ -1,20 +1,61 @@
 package lab.composite;
 
+import java.awt.Dimension;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang3.SerializationUtils;
 
-import lombok.AllArgsConstructor;
+import lab.proxy.ImageContent;
+import lab.proxy.Picture;
+import lab.proxy.PictureContent;
 
-@AllArgsConstructor
-public class Image implements Element {
+public class Image implements Picture, Element {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String url;
+	private ImageContent content;
+
+	public Image(String url) {
+		this.url = url;
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		content = new ImageContent(url);
+	}
 
 	@Override
 	public void print() {
 		System.out.println(String.format("Image: %s", url));
 	}
 
+	@Override
+	public Element makeClone() {
+		return SerializationUtils.clone(this);
+	}
+
+	@Override
+	public String url() {
+		return url;
+	}
+
+	@Override
+	public Dimension dim() {
+		return new Dimension(content.getWidth(), content.getHeight());
+	}
+
+	@Override
+	public PictureContent content() {
+		return content;
+	}
+
+	/*
+	 * Unused Element specific methods
+	 * 
+	 * 
+	 */
+	
 	@Override
 	public void add(Element element) {
 
@@ -28,10 +69,5 @@ public class Image implements Element {
 	@Override
 	public Element get(int index) {
 		return null;
-	}
-
-	@Override
-	public Element makeClone() {
-		return SerializationUtils.clone(this);
 	}
 }
