@@ -3,7 +3,7 @@ package lab;
 import lab.composite.Image;
 import lab.composite.Section;
 
-public class Lab3Runner {
+public class LabRunner {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
 		long endTime = 0L;
