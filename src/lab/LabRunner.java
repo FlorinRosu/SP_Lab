@@ -2,12 +2,18 @@ package lab;
 
 import lab.composite.Paragraph;
 import lab.composite.Section;
+import lab.singleton.DocumentManager;
 import lab.strategy.AlignCenter;
 import lab.strategy.AlignLeft;
 import lab.strategy.AlignRight;
 
 public class LabRunner {
 	public static void main(String[] args) {
+		Book myBook = new Book("My Book");
+		Author me = new Author("My Self");
+		myBook.addAuthor(me);
+		DocumentManager.getInstance().setBook(myBook);
+		
 		Section cap1 = new Section("Capitolul 1");
 		Paragraph p1 = new Paragraph("Paragraph 1");
 		Paragraph p2 = new Paragraph("Paragraph 2");
@@ -17,9 +23,7 @@ public class LabRunner {
 		cap1.add(p2);
 		cap1.add(p3);
 		cap1.add(p4);
-		
-		System.out.println("Printing without Alignment");
-		cap1.print();
+		myBook.add(cap1);
 		
 		Section cap2 = new Section("Capitolul 2");
 		Paragraph p5 = new Paragraph("Paragraph 5");
@@ -33,8 +37,12 @@ public class LabRunner {
 		cap2.add(p6);
 		cap2.add(p7);
 		cap2.add(p8);
-		
-		System.out.println("\nPrinting with Alignment");
-		cap2.print();
+		myBook.add(cap2);
+
+		printing();
+	}
+
+	private static void printing() {
+		DocumentManager.getInstance().getBook().print();
 	}
 }
