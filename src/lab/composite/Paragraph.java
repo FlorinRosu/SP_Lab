@@ -2,17 +2,30 @@ package lab.composite;
 
 import org.apache.commons.lang3.SerializationUtils;
 
-import lombok.AllArgsConstructor;
+import lab.strategy.AlignContext;
+import lab.strategy.AlignStrategy;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Paragraph implements Element {
 	private static final long serialVersionUID = 1L;
 
+	@NonNull
+	@Getter
 	private String text;
+	@Setter
+	private AlignStrategy alignStrategy;
 
 	@Override
 	public void print() {
-		System.out.println(String.format("Paragraph: %s", text));
+		if (alignStrategy != null) {
+			alignStrategy.render(this, new AlignContext(AlignContext.DEFAULT_CHARACTER_LIMIT));
+		} else {
+			System.out.println(text);
+		}
 	}
 
 	@Override
