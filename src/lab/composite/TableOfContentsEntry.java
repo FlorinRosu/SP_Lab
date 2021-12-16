@@ -8,17 +8,20 @@ import org.apache.commons.lang3.SerializationUtils;
 import lab.exception.TableOfContentsNestingException;
 import lab.visitor.Visitor;
 
-public class TableOfContents implements Element {
-	private static final long serialVersionUID = 1L;
-	private List<TableOfContentsEntry> contentList;
+public class TableOfContentsEntry implements Element {
+	private static final long serialVersionUID = 6876712191410202292L;
 	
-	public TableOfContents() {
-		contentList = new ArrayList<TableOfContentsEntry>();
+	private String title;
+	private List<TableOfContentsEntry> subentries;
+	
+	public TableOfContentsEntry(String title) {
+		this.title = title;
+		subentries = new ArrayList<TableOfContentsEntry>();
 	}
 
 	@Override
 	public void render() {
-		System.out.println("Table of contents: ");
+		System.out.println(title);
 	}
 
 	@Override
@@ -27,25 +30,25 @@ public class TableOfContents implements Element {
 			throw new TableOfContentsNestingException("Can only nest instances of TableOfContentsEntry.");
 		}
 		
-		contentList.add((TableOfContentsEntry)element.makeClone());
+		subentries.add((TableOfContentsEntry)element.makeClone());
 	}
 
 	@Override
 	public void remove(Element element) {
-		contentList.remove(element);
+		subentries.remove(element);
 	}
 
 	@Override
 	public Element get(int index) {
 		/* Index out of bounds will be propagated if index is invalid */
-		return contentList.get(index);
+		return subentries.get(index);
 	}
 
 	@Override
 	public Element makeClone() {
 		return SerializationUtils.clone(this);
 	}
-	
+
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
@@ -53,6 +56,7 @@ public class TableOfContents implements Element {
 
 	@Override
 	public int getChildrenCount() {
-		return contentList.size();
+		return subentries.size();
 	}
+	
 }
