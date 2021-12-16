@@ -78,4 +78,9 @@ public class ImageProxy implements Picture, Element {
 	public Element get(int index) {
 		return null;
 	}
+
+	@Override
+	public int getChildrenCount() {
+		return 0;
+	}
 }

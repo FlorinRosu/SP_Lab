@@ -40,4 +40,9 @@ public class Table implements Element {
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+
+	@Override
+	public int getChildrenCount() {
+		return 0;
+	}
 }

@@ -12,6 +12,8 @@ public interface Element extends Serializable { /* Allows cloning by serializati
 	public void remove(Element element);
 
 	public Element get(int index);
+	
+	public int getChildrenCount();
 
 	public Element makeClone();
 	

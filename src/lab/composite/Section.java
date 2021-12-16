@@ -50,6 +50,10 @@ public class Section implements Element {
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
-		children.forEach(element -> element.accept(visitor));
+	}
+
+	@Override
+	public int getChildrenCount() {
+		return children.size();
 	}
 }
