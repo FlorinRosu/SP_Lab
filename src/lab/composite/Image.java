@@ -8,6 +8,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import lab.proxy.ImageContent;
 import lab.proxy.Picture;
 import lab.proxy.PictureContent;
+import lab.visitor.Visitor;
 
 public class Image implements Picture, Element {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,7 @@ public class Image implements Picture, Element {
 	}
 
 	@Override
-	public void print() {
+	public void render() {
 		System.out.println(String.format("Image: %s", url));
 	}
 
@@ -49,6 +50,11 @@ public class Image implements Picture, Element {
 	public PictureContent content() {
 		return content;
 	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
 
 	/*
 	 * Unused Element specific methods
@@ -70,4 +76,10 @@ public class Image implements Picture, Element {
 	public Element get(int index) {
 		return null;
 	}
+
+	@Override
+	public int getChildrenCount() {
+		return 0;
+	}
+	
 }

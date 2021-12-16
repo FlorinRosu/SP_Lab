@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.SerializationUtils;
 
+import lab.visitor.Visitor;
 import lombok.Getter;
 
 public class Section implements Element {
@@ -20,11 +21,9 @@ public class Section implements Element {
 	}
 
 	@Override
-	public void print() {
+	public void render() {
 		/* Add padding inbetween each section */
 		System.out.println(String.format("\nSection: %s", title));
-
-		children.forEach(Element::print);
 	}
 
 	@Override
@@ -46,5 +45,15 @@ public class Section implements Element {
 	@Override
 	public Element makeClone() {
 		return SerializationUtils.clone(this);
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
+
+	@Override
+	public int getChildrenCount() {
+		return children.size();
 	}
 }

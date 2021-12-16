@@ -17,11 +17,10 @@ public class Book extends Section {
 	}
 
 	@Override
-	public void print() {
+	public void render() {
 		System.out.println(String.format("Book: %s\nAuthors: ", super.getTitle()));
 		
 		authors.forEach(Author::print);
-		super.print();
 	}
 
 	public void addAuthor(Author author) {

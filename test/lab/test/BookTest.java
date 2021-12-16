@@ -11,6 +11,7 @@ import lab.composite.Element;
 import lab.composite.Paragraph;
 import lab.composite.Section;
 import lab.proxy.ImageProxy;
+import lab.visitor.RenderContentVisitor;
 
 public class BookTest {
 	private Book book;
@@ -47,11 +48,11 @@ public class BookTest {
 
 		// When
 		initialPrintStartTime = System.currentTimeMillis();
-		book.print();
+		book.accept(new RenderContentVisitor());
 		initialPrintEndTime = System.currentTimeMillis();
 
 		secondaryPrintStartTime = System.currentTimeMillis();
-		book.print();
+		book.accept(new RenderContentVisitor());
 		secondaryPrintEndTime = System.currentTimeMillis();
 		
 		// Then
