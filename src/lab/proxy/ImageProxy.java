@@ -6,6 +6,7 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import lab.composite.Element;
 import lab.composite.Image;
+import lab.visitor.Visitor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -33,9 +34,9 @@ public class ImageProxy implements Picture, Element {
 	}
 
 	@Override
-	public void print() {
+	public void render() {
 		loadImage();
-		realImg.print();
+		realImg.render();
 	}
 	
 	@Override
@@ -49,6 +50,11 @@ public class ImageProxy implements Picture, Element {
 		}
 
 		return realImg;
+	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 
 	/*

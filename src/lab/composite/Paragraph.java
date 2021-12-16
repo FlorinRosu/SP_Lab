@@ -4,6 +4,7 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import lab.strategy.AlignContext;
 import lab.strategy.AlignStrategy;
+import lab.visitor.Visitor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class Paragraph implements Element {
 	private AlignStrategy alignStrategy;
 
 	@Override
-	public void print() {
+	public void render() {
 		if (alignStrategy != null) {
 			alignStrategy.render(this, new AlignContext(AlignContext.DEFAULT_CHARACTER_LIMIT));
 		} else {
@@ -46,5 +47,10 @@ public class Paragraph implements Element {
 	@Override
 	public Element makeClone() {
 		return SerializationUtils.clone(this);
+	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 }

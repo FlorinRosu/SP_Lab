@@ -2,6 +2,7 @@ package lab.composite;
 
 import org.apache.commons.lang3.SerializationUtils;
 
+import lab.visitor.Visitor;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -11,7 +12,7 @@ public class Table implements Element {
 	private String footNote;
 
 	@Override
-	public void print() {
+	public void render() {
 		System.out.println(String.format("Table: %s", footNote));
 	}
 
@@ -33,5 +34,10 @@ public class Table implements Element {
 	@Override
 	public Element makeClone() {
 		return SerializationUtils.clone(this);
+	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 }
