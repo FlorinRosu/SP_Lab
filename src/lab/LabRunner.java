@@ -6,6 +6,7 @@ import lab.singleton.DocumentManager;
 import lab.strategy.AlignCenter;
 import lab.strategy.AlignLeft;
 import lab.strategy.AlignRight;
+import lab.visitor.RenderContentVisitor;
 
 public class LabRunner {
 	public static void main(String[] args) {
@@ -38,11 +39,7 @@ public class LabRunner {
 		cap2.add(p7);
 		cap2.add(p8);
 		myBook.add(cap2);
-
-		printing();
-	}
-
-	private static void printing() {
-		DocumentManager.getInstance().getBook().print();
+		
+		myBook.accept(new RenderContentVisitor());
 	}
 }
