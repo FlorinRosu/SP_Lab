@@ -6,6 +6,7 @@ import lab.composite.Paragraph;
 import lab.composite.Section;
 import lab.composite.Table;
 import lab.composite.TableOfContents;
+import lab.composite.TableOfContentsEntry;
 import lab.proxy.ImageProxy;
 
 public interface Visitor {
@@ -16,4 +17,5 @@ public interface Visitor {
 	public void visit(ImageProxy imageProxy);
 	public void visit(Image image);
 	public void visit(Table table);
+	public void visit(TableOfContentsEntry tableOfContentsEntry);
 }
