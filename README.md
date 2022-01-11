@@ -21,3 +21,9 @@ https://github.com/Bogdanfl935/SP_Lab/tree/8e0f2bae6018f9c1726ce854adc55fbf5d7a3
 https://github.com/Bogdanfl935/SP_Lab/commit/5178b050c544c8dcc4b23b17fb096a0567cb1795
 
 - all good ;)
+
+# Feedback lab5+6:
+https://github.com/Bogdanfl935/SP_Lab/tree/68c2a8efaa3065ca4e5a77dd02e0c987bbf01039
+- all good ;)
+
+# Proposed grade: 10
